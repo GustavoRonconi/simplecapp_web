@@ -1,7 +1,9 @@
+from django.contrib import admin
 from django.urls import path, re_path
 from guiareceita import views
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
     path("", views.IndexView.as_view(), name="index"),
     path("viagem/", views.ViagemView.as_view(), name="viagem"),
     path("viagem/inserir/", views.ViagemInsert.as_view(), name="inserir_viager"),
