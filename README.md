@@ -1,2 +1,2 @@
-# guiaReceita
-Serviço de Backend do guiaReceita.
+# simpleCapp
+Serviço de Backend do simpleCapp.
