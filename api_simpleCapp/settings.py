@@ -78,9 +78,9 @@ WSGI_APPLICATION = "api_simpleCapp.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "guiareceita",
-        "USER": "guia_receita",
-        "PASSWORD": "guiareceita123",
+        "NAME": "simplecapp",
+        "USER": "simplecapp",
+        "PASSWORD": "simplecappideias",
         "HOST": "localhost",
         "PORT": "5433",
     }
