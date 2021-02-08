@@ -1,3 +1,4 @@
+import json
 from django.test import TestCase
 from ..models import ProfileModel, StatesModel
 from rest_framework.test import force_authenticate
@@ -16,49 +17,110 @@ class ProfileTest(TestCase):
     """ Test module for GET profile based USER TOKEN """
 
     def setUp(self):
-        mocked_profile = {
+        # CRIAÇÃO DE UM USUÁRIO COM PERFIL
+        self.valid_profile1 = {
             "age": 25,
             "gender": 1,
             "date_of_birth": "1995-05-05",
             "occupation": "IT Analyst",
-            "phone_number": "55489980505587785",
+            "phone_number": "45646564",
             "cpf": "09248078908",
-            "state": {"name": "Santa Catarina", "state_abbr": "SC", "cod_uf": 1},
             "cep": "88880000",
-            "user": {
-                "username": "novo_gustavo5",
-                "password": "novo_gustavo5",
-                "email": "gustavo.ronconi@teste5.com.br",
-                "first_name": "Gustavo A.",
-                "last_name": "Ronconi",
-            },
         }
-        user_without_profile = {
-            "username": "novo_gustavo6",
-            "password": "novo_gustavo6",
-            "email": "gustavo.ronconi@teste6.com.br",
+        self.valid_user1 = {
+            "username": "gustavoronconi",
+            "password": make_password("gustavoronconi"),
+            "email": "gustavo.ronconi@gmail.com.br",
             "first_name": "Gustavo A.",
             "last_name": "Ronconi",
         }
-        user_with_profile_data = mocked_profile.pop("user")
-        state_data = mocked_profile.pop("state")
-        user_without_profile["password"] = make_password(
-            user_without_profile["password"]
-        )
-        user_with_profile_data["password"] = make_password(
-            user_with_profile_data["password"]
-        )
-        user_with_profile_ = User.objects.create(**user_with_profile_data)
-        User.objects.create(**user_without_profile)
-        state = StatesModel.objects.create(**state_data)
+        self.valid_state = {"name": "Santa Catarina", "state_abbr": "SC", "cod_uf": 1}
+
+        user1 = User.objects.create(**self.valid_user1)
+        self.state = StatesModel.objects.create(**self.valid_state)
         self.profile_with_user = ProfileModel.objects.create(
-            **mocked_profile, user=user_with_profile_, state=state
+            **self.valid_profile1, user=user1, state=self.state
         )
+
+        # CRIAÇÃO DE UM USUÁRIO SEM PERFIL (SOCIAL_LOGIN)
+        self.valid_user2 = {
+            "username": "gustavoronconi2",
+            "password": make_password("gustavoronconi2"),
+            "email": "gustavo.ronconi2@gmail.com.br",
+            "first_name": "Gustavo A.",
+            "last_name": "Ronconi",
+        }
+        User.objects.create(**self.valid_user2)
+
+    def test_post_valid_profile_with_social_login(self):
+        user = User.objects.get(username="gustavoronconi2")
+        profile_to_post = {
+            "age": 25,
+            "gender": 1,
+            "date_of_birth": "1995-05-05",
+            "occupation": "IT Analyst",
+            "phone_number": "456465642424",
+            "cpf": "0924807892424",
+            "cep": "88880000",
+            "state": self.state.pk,
+        }
+
+        view = ProfileView.as_view()
+        request = factory.post(
+            "/profile/", json.dumps(profile_to_post), content_type="application/json",
+        )
+        force_authenticate(request, user=user)
+        response = view(request)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_post_valid_profile_without_social_login(self):
+        profile_to_post = {
+            "age": 25,
+            "gender": 1,
+            "date_of_birth": "1995-05-05",
+            "occupation": "IT Analyst",
+            "phone_number": "4564656424",
+            "cpf": "09248078924",
+            "cep": "88880000",
+            "user": {
+                "username": "gustavoronconi3",
+                "password": make_password("gustavoronconi3"),
+                "email": "gustavo.ronconi3@gmail.com.br",
+                "first_name": "Gustavo A.",
+                "last_name": "Ronconi",
+            },
+            "state": self.state.pk,
+        }
+        request = factory.post(
+            "/profile/", json.dumps(profile_to_post), content_type="application/json",
+        )
+        view = ProfileView.as_view()
+        response = view(request)
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+    def test_post_invalid_profile_without_social_login(self):
+        profile_to_post = {
+            "age": 25,
+            "gender": 1,
+            "date_of_birth": "1995-05-05",
+            "occupation": "IT Analyst",
+            "phone_number": "45646564",
+            "cpf": "09248078908",
+            "cep": "88880000",
+        }
+        request = factory.post(
+            "/profile/", json.dumps(profile_to_post), content_type="application/json",
+        )
+        view = ProfileView.as_view()
+        response = view(request)
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
     def test_get_profile_valid_authenticate(self):
         profile_to_check = ProfileModel.objects.get(pk=self.profile_with_user.pk)
         serializer = ProfileSerializer(profile_to_check)
-        user = User.objects.get(username="novo_gustavo5")
+        user = User.objects.get(username="gustavoronconi")
         view = ProfileView.as_view()
         request = factory.get("/profile/")
         force_authenticate(request, user=user)
@@ -72,7 +134,7 @@ class ProfileTest(TestCase):
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_get_user_without_profile(self):
-        user = User.objects.get(username="novo_gustavo6")
+        user = User.objects.get(username="gustavoronconi2")
         view = ProfileView.as_view()
         request = factory.get("/profile/")
         force_authenticate(request, user=user)
