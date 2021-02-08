@@ -1,1 +1,2 @@
 from .social_login_serializer import SocialSerializer
+from .profile_serializer import ProfileSerializer

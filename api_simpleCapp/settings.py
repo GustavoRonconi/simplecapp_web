@@ -133,6 +133,7 @@ REST_FRAMEWORK = {
         "oauth2_provider.contrib.rest_framework.OAuth2Authentication",
         "rest_framework_social_oauth2.authentication.SocialAuthentication",
     ],
+    "TEST_REQUEST_DEFAULT_FORMAT": "json",
 }
 
 
@@ -157,13 +158,15 @@ SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
 
 
 # Google configuration
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "619939177191-dqvurkdms2dgmjj7v3j17ml5n18lns99.apps.googleusercontent.com"
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = (
+    "619939177191-dqvurkdms2dgmjj7v3j17ml5n18lns99.apps.googleusercontent.com"
+)
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "UYHcPefRQAoCIz6FzYz7z7zk"
 
 # Define SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE to get extra permissions from Google.
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
-    'https://www.googleapis.com/auth/userinfo.email',
-    'https://www.googleapis.com/auth/userinfo.profile',
+    "https://www.googleapis.com/auth/userinfo.email",
+    "https://www.googleapis.com/auth/userinfo.profile",
 ]
 
 
