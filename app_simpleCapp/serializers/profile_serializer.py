@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from app_simpleCapp.models.profile_model import ProfileModel
+from ..models import ProfileModel
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 

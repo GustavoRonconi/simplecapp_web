@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import SocialLoginView, ProfileView
+from .views import SocialLoginView, ProfileView, BrokerageFeesView
 from rest_framework_simplejwt import views as jwt_views
 
 
@@ -14,4 +14,5 @@ urlpatterns = [
         name="token_refresh",
     ),
     path("profile/", ProfileView.as_view(), name="profile"),
+    path("brokerage-fees/", BrokerageFeesView.as_view(), name="brokerage-fees"),
 ]
