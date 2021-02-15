@@ -5,19 +5,18 @@ from ..serializers import BrokerSerializer
 
 
 class BrokerageFeesListSerializer(serializers.ListSerializer):
-    def validate(self, attrs):
-        print(1)
-        # Here attrs contains list of Params You can validate it here
-        pass
+    def validate(self, data):
+        ordered_begin_date = sorted(data, key=lambda k: k["begin_date"])
+        return ordered_begin_date
+
 
 class BrokerageFeesSerializer(serializers.ModelSerializer):
     broker = BrokerSerializer(read_only=True)
     broker_id = serializers.IntegerField(write_only=True)
     profile_id = serializers.IntegerField(write_only=True)
 
-    list_serializer_class = BrokerageFeesListSerializer
-
     class Meta:
+        list_serializer_class = BrokerageFeesListSerializer
         model = BrokerageFeesModel
         fields = (
             "begin_date",
@@ -29,6 +28,6 @@ class BrokerageFeesSerializer(serializers.ModelSerializer):
         )
         depth = 1
 
-    def validate(self, data):
-        # ordered_begin_date = OrderedDict(sorted(data.items(), key=lambda item: item[1]['begin_date']))
-        return data
+    # def validate(self, data):
+    #     # ordered_begin_date = OrderedDict(sorted(data.items(), key=lambda item: item[1]['begin_date']))
+    #     return data
