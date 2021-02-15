@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from app_simpleCapp.models.profile_model import ProfileModel
 from app_simpleCapp.serializers.profile_serializer import ProfileSerializer
 from rest_framework import permissions
+from ..serializers import decorators
 
 
 class IsPostOrIsAuthenticated(permissions.BasePermission):
@@ -16,17 +17,18 @@ class IsPostOrIsAuthenticated(permissions.BasePermission):
 class ProfileView(APIView):
     permission_classes = (IsPostOrIsAuthenticated,)
 
-    def get(self, request):
-        profile = ProfileModel.objects.filter(user_id=request.user.id).first()
+    @decorators.profile_analyser
+    def get(self, request, profile):
         if profile is not None:
             serializer = ProfileSerializer(profile)
             return Response(status=status.HTTP_200_OK, data=serializer.data)
 
         return Response(status=status.HTTP_204_NO_CONTENT, data={})
 
-    def post(self, request):
+    @decorators.profile_analyser
+    def post(self, request, profile):
         data = request.data
-        serializer = ProfileSerializer(data=data, context={"request": request})
+        serializer = ProfileSerializer(data=data, context={"request": request}, many=True)
         if not (request.user.is_authenticated) and "user" not in data.keys():
             return Response(
                 status=status.HTTP_400_BAD_REQUEST,
@@ -34,7 +36,6 @@ class ProfileView(APIView):
                     "errors": "Para criar um perfil sem estar autenticado é necessário informar os dados de usuario."
                 },
             )
-        profile = ProfileModel.objects.filter(user_id=request.user.id).first()
         if profile is not None:
             return Response(
                 status=status.HTTP_400_BAD_REQUEST,
