@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import SocialLoginView, ProfileView, BrokerageFeesView
+from .views import SocialLoginView, ProfileView, BrokerageFeesView, BrokerView
 from rest_framework_simplejwt import views as jwt_views
 
 
@@ -15,4 +15,5 @@ urlpatterns = [
     ),
     path("profile/", ProfileView.as_view(), name="profile"),
     path("brokerage-fees/", BrokerageFeesView.as_view(), name="brokerage-fees"),
+    path("broker/", BrokerView.as_view(), name="broker"),
 ]

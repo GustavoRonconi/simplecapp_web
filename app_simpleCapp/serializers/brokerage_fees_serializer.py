@@ -5,18 +5,15 @@ from ..serializers import BrokerSerializer
 
 class BrokerageFeesSerializer(serializers.ModelSerializer):
     broker = BrokerSerializer(read_only=True)
-    broker_id = serializers.PrimaryKeyRelatedField(
-        queryset=BrokerModel.objects.all(), source="broker"
-    )
 
     class Meta:
         model = BrokerageFeesModel
         fields = (
+            "id",
             "begin_date",
             "end_date",
             "brokerage_fee_value",
-            "broker",
-            "broker_id",
+            "broker",            
         )
         depth = 1
 
