@@ -28,7 +28,7 @@ class ProfileView(APIView):
     @decorators.profile_analyser
     def post(self, request, profile):
         data = request.data
-        serializer = ProfileSerializer(data=data, context={"request": request}, many=True)
+        serializer = ProfileSerializer(data=data, context={"request": request})
         if not (request.user.is_authenticated) and "user" not in data.keys():
             return Response(
                 status=status.HTTP_400_BAD_REQUEST,

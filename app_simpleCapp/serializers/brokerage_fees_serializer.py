@@ -6,8 +6,35 @@ from ..serializers import BrokerSerializer
 
 class BrokerageFeesListSerializer(serializers.ListSerializer):
     def validate(self, data):
-        ordered_begin_date = sorted(data, key=lambda k: k["begin_date"])
-        return ordered_begin_date
+        brokers_ids = [v["broker_id"] for v in data]
+        brokerage_fees_by_broker = {}
+        for brokers_id in brokers_ids:
+            brokerage_fees_by_broker[brokers_id] = []
+            for brokerage_fee in data:
+                if brokerage_fee["broker_id"] == brokers_id:
+                    brokerage_fees_by_broker[brokers_id].append(brokerage_fee)
+        brokerage_fees_by_broker = {
+            key: sorted(value, key=lambda k: k["begin_date"])
+            for key, value in brokerage_fees_by_broker.items()
+        }
+        for brokers_id, brokerage_fees in brokerage_fees_by_broker.items():
+            for index, brokerage_fee in enumerate(brokerage_fees, 1):
+                if index < len(brokerage_fees):
+                    if (
+                        brokerage_fee["end_date"] is None
+                        or (
+                            brokerage_fees[index]["begin_date"]
+                            - brokerage_fee["end_date"]
+                        ).days
+                        != 1
+                    ):
+                        raise serializers.ValidationError(
+                            {
+                                "brokerage_fees": "Existem inconsistências na lista de vigências"
+                            }
+                        )
+
+        return data
 
 
 class BrokerageFeesSerializer(serializers.ModelSerializer):
