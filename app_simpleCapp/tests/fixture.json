@@ -1,0 +1,10 @@
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "username": "simple_user",
+      "first_name": "John",
+      "last_name": "Lennon",
+      "groups": [1],
+    }
+   }

@@ -11,4 +11,4 @@ class BrokerageFeesModel(models.Model):
         max_digits=10, decimal_places=5, null=False
     )
     broker = models.ForeignKey("BrokerModel", null=False, on_delete=models.CASCADE)
-    profile = models.ForeignKey("StatesModel", null=False, on_delete=models.CASCADE)
+    profile = models.ForeignKey("ProfileModel", null=False, on_delete=models.CASCADE)
