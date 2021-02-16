@@ -1,12 +1,14 @@
 import json
-from ...models import ProfileModel, StatesModel
-from rest_framework.test import force_authenticate
-from django.contrib.auth.models import User
-from django.contrib.auth.hashers import make_password
-from ...views import ProfileView
-from ...serializers import ProfileSerializer
-from rest_framework import status
+
 import pytest
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import User
+from rest_framework import status
+from rest_framework.test import force_authenticate
+
+from ...models import ProfileModel, StatesModel
+from ...serializers import ProfileSerializer
+from ...views import ProfileView
 
 
 @pytest.fixture

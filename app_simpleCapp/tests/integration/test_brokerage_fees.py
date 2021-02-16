@@ -2,12 +2,12 @@ import json
 
 import pytest
 from django.contrib.auth.models import User
+from rest_framework import status
 from rest_framework.test import force_authenticate
 
 from ...models import BrokerageFeesModel, BrokerModel
 from ...serializers import BrokerageFeesSerializer
 from ...views import BrokerageFeesView
-from rest_framework import status
 
 
 @pytest.fixture

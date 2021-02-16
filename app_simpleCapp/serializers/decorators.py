@@ -1,5 +1,6 @@
-from ..models import ProfileModel
 from functools import wraps
+
+from ..models import ProfileModel
 
 
 def profile_analyser(func):

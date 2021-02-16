@@ -1,9 +1,9 @@
 import pytest
-
-from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
-from ..models import ProfileModel, StatesModel
+from django.contrib.auth.models import User
 from rest_framework.test import APIRequestFactory
+
+from ..models import ProfileModel, StatesModel
 
 
 @pytest.fixture(scope="session")

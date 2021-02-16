@@ -1,11 +1,11 @@
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.views import APIView
-from ..models import BrokerageFeesModel
-from ..serializers import BrokerageFeesSerializer
-from rest_framework.response import Response
-from rest_framework import status
 from django.db.transaction import atomic
-from ..serializers import decorators
+from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
+
+from ..models import BrokerageFeesModel
+from ..serializers import BrokerageFeesSerializer, decorators
 
 
 class BrokerageFeesView(APIView):

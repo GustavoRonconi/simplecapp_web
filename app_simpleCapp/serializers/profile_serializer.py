@@ -1,8 +1,8 @@
-from rest_framework import serializers
-from ..models import ProfileModel
-from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import User
+from rest_framework import serializers
 
+from ..models import ProfileModel
 
 User._meta.get_field("email")._unique = True
 

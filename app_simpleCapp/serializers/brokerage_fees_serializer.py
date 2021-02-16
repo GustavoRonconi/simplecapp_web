@@ -1,5 +1,7 @@
 from collections import OrderedDict
+
 from rest_framework import serializers
+
 from ..models import BrokerageFeesModel
 from ..serializers import BrokerSerializer
 
