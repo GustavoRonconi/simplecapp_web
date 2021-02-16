@@ -1,7 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
-from app_simpleCapp.models.profile_model import ProfileModel
 from app_simpleCapp.serializers.profile_serializer import ProfileSerializer
 from rest_framework import permissions
 from ..serializers import decorators
@@ -45,3 +44,9 @@ class ProfileView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @decorators.profile_analyser
+    def put(self, request, profile, id):
+        data = request.data
+        serializer = ProfileSerializer(data=data, context={"request": request})
+        print(1)

@@ -37,6 +37,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProfileModel
         fields = "__all__"
+        extra_kwargs = {"id": {"read_only": True}}
 
     def create(self, validated_data):
         if "user" in validated_data.keys():
@@ -49,3 +50,12 @@ class ProfileSerializer(serializers.ModelSerializer):
         validated_data["user_id"] = self.context["request"].user.id
         profile = ProfileModel.objects.create(**validated_data)
         return profile
+
+    def update(self, instance, validated_data):
+        # instance.title = validated_data.get('title', instance.title)
+        # instance.description = validated_data.get('description', instance.description)
+        # instance.body = validated_data.get('body', instance.body)
+        # instance.author_id = validated_data.get('author_id', instance.author_id)
+
+        instance.save()
+        return instance
