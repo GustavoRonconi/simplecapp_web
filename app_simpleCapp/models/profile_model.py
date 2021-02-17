@@ -6,7 +6,7 @@ class ProfileModel(models.Model):
     class Meta:
         db_table = "profile_user"
 
-    user = models.OneToOneField(User, related_name="profile", on_delete=models.PROTECT)
+    user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
     gender = models.BooleanField()
     date_of_birth = models.DateField(null=False)
     occupation = models.CharField(max_length=50)

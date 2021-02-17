@@ -73,6 +73,15 @@ def test_post_valid_profile_without_social_login(factory, valid_user_with_profil
 
     assert response.status_code == status.HTTP_201_CREATED
 
+@pytest.mark.django_db
+def test_delete_profile(factory, valid_user_with_profile):
+    user = User.objects.get(username="gustavoronconi")
+    request = factory.delete("/profile/")
+    view = ProfileView.as_view()
+    force_authenticate(request, user=user)
+    response = view(request)
+    assert response.status_code == status.HTTP_204_NO_CONTENT
+
 
 @pytest.mark.django_db
 def test_post_invalid_profile_without_social_login(factory, valid_user_with_profile):
