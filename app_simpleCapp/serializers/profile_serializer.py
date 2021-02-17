@@ -1,3 +1,5 @@
+import re
+
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from rest_framework import serializers
@@ -48,10 +50,18 @@ class ProfileSerializer(serializers.ModelSerializer):
 
             return profile
         validated_data["user_id"] = self.context["request"].user.id
+        validated_data["cpf"] = re.sub("[^0-9]", "", validated_data["cpf"])
+        validated_data["phone_number"] = re.sub(
+            "[^0-9]", "", validated_data["phone_number"]
+        )
         profile = ProfileModel.objects.create(**validated_data)
         return profile
 
     def update(self, instance, validated_data):
+        if validated_data.get("phone_number"):
+            validated_data["phone_number"] = re.sub(
+                "[^0-9]", "", validated_data["phone_number"]
+            )
         for key, value in validated_data.items():
             if key == "user":
                 for k, v in value.items():
