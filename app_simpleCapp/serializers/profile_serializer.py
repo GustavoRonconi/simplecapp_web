@@ -52,10 +52,24 @@ class ProfileSerializer(serializers.ModelSerializer):
         return profile
 
     def update(self, instance, validated_data):
-        # instance.title = validated_data.get('title', instance.title)
-        # instance.description = validated_data.get('description', instance.description)
-        # instance.body = validated_data.get('body', instance.body)
-        # instance.author_id = validated_data.get('author_id', instance.author_id)
+        for key, value in validated_data.items():
+            if key == "user":
+                for k, v in value.items():
+                    v = make_password(v) if k == "password" else v
+                    setattr(instance.user, k, v)
+            else:
+                setattr(instance, key, value)
 
         instance.save()
         return instance
+
+    def validate(self, data):
+        keys_not_allowed = ["cpf"]
+
+        if self.context["request"].method == "PUT":
+            for key in data.keys():
+                if key in keys_not_allowed:
+                    raise serializers.ValidationError(
+                        {key: "Não é permitido alterar o campo."}
+                    )
+        return data

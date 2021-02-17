@@ -29,7 +29,6 @@ def test_post_valid_profile_with_social_login(
 ):
     user = User.objects.get(username="gustavoronconi2")
     profile_to_post = {
-        "age": 25,
         "gender": 1,
         "date_of_birth": "1995-05-05",
         "occupation": "IT Analyst",
@@ -51,7 +50,6 @@ def test_post_valid_profile_with_social_login(
 @pytest.mark.django_db
 def test_post_valid_profile_without_social_login(factory, valid_user_with_profile):
     profile_to_post = {
-        "age": 25,
         "gender": 1,
         "date_of_birth": "1995-05-05",
         "occupation": "IT Analyst",
@@ -79,7 +77,6 @@ def test_post_valid_profile_without_social_login(factory, valid_user_with_profil
 @pytest.mark.django_db
 def test_post_invalid_profile_without_social_login(factory, valid_user_with_profile):
     profile_to_post = {
-        "age": 25,
         "gender": 1,
         "date_of_birth": "1995-05-05",
         "occupation": "IT Analyst",
@@ -125,3 +122,47 @@ def test_get_user_without_profile(factory, valid_user_without_profile):
     response = view(request)
     assert response.status_code == status.HTTP_204_NO_CONTENT
 
+
+@pytest.mark.django_db
+def test_put_valid_profile(factory, valid_user_with_profile):
+    view = ProfileView.as_view()
+    user = User.objects.get(username="gustavoronconi")
+    profile_to_put = {
+        "gender": 1,
+        "user": {"email": "gustavo.ronconi@teste7.com.br"},
+    }
+
+    request = factory.put(
+        f"/profile/{valid_user_with_profile.id}/",
+        json.dumps(profile_to_put),
+        content_type="application/json",
+    )
+
+    force_authenticate(request, user=user)
+    response = view(request, pk=valid_user_with_profile.id)
+
+    assert response.status_code == status.HTTP_200_OK
+    assert {
+        "gender": response.data["gender"],
+        "user": {"email": response.data["user"]["email"]},
+    } == profile_to_put
+
+
+@pytest.mark.django_db
+def test_put_invalid_profile(factory, valid_user_with_profile):
+    view = ProfileView.as_view()
+    user = User.objects.get(username="gustavoronconi")
+    profile_to_put = {
+        "cpf": "4164654",
+    }
+
+    request = factory.put(
+        f"/profile/{valid_user_with_profile.id}/",
+        json.dumps(profile_to_put),
+        content_type="application/json",
+    )
+
+    force_authenticate(request, user=user)
+    response = view(request, pk=valid_user_with_profile.id)
+
+    assert response.status_code == status.HTTP_400_BAD_REQUEST

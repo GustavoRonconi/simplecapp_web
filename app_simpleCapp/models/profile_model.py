@@ -7,7 +7,6 @@ class ProfileModel(models.Model):
         db_table = "profile_user"
 
     user = models.OneToOneField(User, related_name="profile", on_delete=models.PROTECT)
-    age = models.IntegerField(null=False)
     gender = models.BooleanField()
     date_of_birth = models.DateField(null=False)
     occupation = models.CharField(max_length=50)

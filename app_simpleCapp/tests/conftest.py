@@ -14,7 +14,6 @@ def factory():
 @pytest.fixture
 def valid_user_with_profile():
     valid_profile1 = {
-        "age": 25,
         "gender": 1,
         "date_of_birth": "1995-05-05",
         "occupation": "IT Analyst",

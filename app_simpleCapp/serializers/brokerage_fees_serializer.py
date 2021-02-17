@@ -56,7 +56,3 @@ class BrokerageFeesSerializer(serializers.ModelSerializer):
             "profile_id",
         )
         depth = 1
-
-    # def validate(self, data):
-    #     # ordered_begin_date = OrderedDict(sorted(data.items(), key=lambda item: item[1]['begin_date']))
-    #     return data

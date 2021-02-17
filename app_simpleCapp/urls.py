@@ -14,7 +14,7 @@ urlpatterns = [
         name="token_refresh",
     ),
     path("profile/", ProfileView.as_view(), name="profile"),
-    path("profile/<int:id>", ProfileView.as_view(), name="profile"),
+    path("profile/<int:pk>/", ProfileView.as_view(), name="profile"),
     path("brokerage-fees/", BrokerageFeesView.as_view(), name="brokerage-fees"),
     path("broker/", BrokerView.as_view(), name="broker"),
 ]
