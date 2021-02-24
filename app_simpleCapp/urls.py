@@ -1,5 +1,11 @@
-from django.urls import path
-from .views import SocialLoginView, ProfileView, BrokerageFeesView, BrokerView
+from django.urls import path, include
+from .views import (
+    SocialLoginView,
+    ProfileView,
+    BrokerageFeesView,
+    BrokerView,
+    SyncCeiView,
+)
 from rest_framework_simplejwt import views as jwt_views
 
 
@@ -16,5 +22,6 @@ urlpatterns = [
     path("profile/", ProfileView.as_view(), name="profile"),
     path("profile/<int:pk>/", ProfileView.as_view(), name="profile"),
     path("brokerage-fees/", BrokerageFeesView.as_view(), name="brokerage-fees"),
-    path("broker/", BrokerView.as_view(), name="broker"),
+    path("sync-cei/", SyncCeiView.as_view(), name="sync-cei"),
+    path("celery-progress/", include("celery_progress.urls"), name="celery-progress"),
 ]

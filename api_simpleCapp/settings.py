@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     "oauth2_provider",
     "social_django",
     "rest_framework_social_oauth2",
+    "django_celery_results",
+    "celery_progress",
 ]
 
 MIDDLEWARE = [
@@ -188,8 +190,8 @@ SOCIAL_AUTH_PIPELINE = (
     "social_core.pipeline.user.user_details",
 )
 
-CELERY_BROKER_URL = "redis://localhost:6379"
-CELERY_RESULT_BACKEND = "redis://localhost:6379"
+CELERY_BROKER_URL = "redis://:pe6dfe46568790370d972936a51e598c05e238e69e406a85f1cd29729c4906356@ec2-72-44-37-44.compute-1.amazonaws.com:31009"
+CELERY_RESULT_BACKEND = "django-db"
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_RESULT_SERIALIZER = "json"
 CELERY_TASK_SERIALIZER = "json"
