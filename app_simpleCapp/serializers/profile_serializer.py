@@ -3,6 +3,8 @@ import re
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from rest_framework import serializers
+from asgiref.sync import async_to_sync
+from channels.layers import get_channel_layer
 
 from ..models import ProfileModel
 
@@ -48,6 +50,12 @@ class ProfileSerializer(serializers.ModelSerializer):
             user = User.objects.create(**user_data)
             profile = ProfileModel.objects.create(**validated_data, user=user)
 
+            channel_layer = get_channel_layer()
+            async_to_sync(channel_layer.group_send)(
+                "gossip",
+                {"type": "user.gossip", "event": "New User", "username": "teste"},
+            )
+
             return profile
         validated_data["user_id"] = self.context["request"].user.id
         validated_data["cpf"] = re.sub("[^0-9]", "", validated_data["cpf"])
@@ -55,6 +63,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             "[^0-9]", "", validated_data["phone_number"]
         )
         profile = ProfileModel.objects.create(**validated_data)
+
         return profile
 
     def update(self, instance, validated_data):

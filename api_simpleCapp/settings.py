@@ -10,8 +10,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-from pathlib import Path
 from datetime import timedelta
+from pathlib import Path
+
+DEBUG = True
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +27,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "ht1mw_oj7!gc58wbl20dj@gc_=@s4t&(=u^&ikv*v+t2l+2(h9"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -45,6 +47,7 @@ INSTALLED_APPS = [
     "rest_framework_social_oauth2",
     "django_celery_results",
     "celery_progress",
+    "channels"
 ]
 
 MIDDLEWARE = [
@@ -83,7 +86,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "api_simpleCapp.wsgi.application"
+ASGI_APPLICATION = "api_simpleCapp.routings.application"
 
 
 # Database
@@ -195,3 +198,13 @@ CELERY_RESULT_BACKEND = "django-db"
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_RESULT_SERIALIZER = "json"
 CELERY_TASK_SERIALIZER = "json"
+
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": ["redis://:pe6dfe46568790370d972936a51e598c05e238e69e406a85f1cd29729c4906356@ec2-72-44-37-44.compute-1.amazonaws.com:31009"],
+        },
+    },
+}
