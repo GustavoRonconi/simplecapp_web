@@ -27,6 +27,7 @@ def valid_user_with_profile():
         "email": "gustavo.ronconi@gmail.com.br",
         "first_name": "Gustavo A.",
         "last_name": "Ronconi",
+        "is_staff": True,
     }
     valid_state = {"name": "Santa Catarina", "state_abbr": "SC", "cod_uf": 1}
 

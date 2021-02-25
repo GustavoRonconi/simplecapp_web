@@ -1,13 +1,7 @@
-from channels.routing import ProtocolTypeRouter, URLRouter
 from django.urls import path
-from app_simpleCapp.consumers import NoseyConsumer
-from .middleware import TokenAuthMiddlewareStack
+from app_simpleCapp.consumers import NotificationConsumer
 
-application = ProtocolTypeRouter(
-    {
-        "websocket": TokenAuthMiddlewareStack(
-            URLRouter([path("notifications/", NoseyConsumer),])
-        )
-    }
-)
+websocket_urlpatterns = [
+    path("notification/", NotificationConsumer.as_asgi()),
+]
 

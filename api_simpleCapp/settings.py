@@ -86,7 +86,7 @@ TEMPLATES = [
     },
 ]
 
-ASGI_APPLICATION = "api_simpleCapp.routings.application"
+ASGI_APPLICATION = "api_simpleCapp.asgi.application"
 
 
 # Database
