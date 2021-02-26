@@ -23,6 +23,10 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt --no-cache-dir ; fi
           if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt --no-cache-dir ; fi
+
+      - name: Define Variables
+          env:
+              SECRET_KEY: "apenas_test_dart" 
       
       - name: Test with pytest
         run: pytest --cov=./ --cov-report=xml
