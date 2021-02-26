@@ -103,7 +103,7 @@ DATABASES = {
         "USER": "simplecapp",
         "PASSWORD": "simplecappideias",
         "HOST": "localhost",
-        "PORT": "5433",
+        "PORT": os.getenv("POSTGREES_PORT"),
     }
 }
 
