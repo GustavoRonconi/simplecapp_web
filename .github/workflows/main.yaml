@@ -26,7 +26,7 @@ jobs:
 
       - name: Define Variables
           env:
-              SECRET_KEY: "apenas_test_dart" 
+            SECRET_KEY: "apenas_test_dart" 
       
       - name: Test with pytest
         run: pytest --cov=./ --cov-report=xml
