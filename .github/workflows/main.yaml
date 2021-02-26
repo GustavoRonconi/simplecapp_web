@@ -18,7 +18,7 @@ jobs:
           if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt --no-cache-dir ; fi
       
       - name: Test with pytest
-      run: pytest --cov=./ --cov-report=xml
+        run: pytest --cov=./ --cov-report=xml
 
       # Deploy Heroku
       - uses: akhileshns/heroku-deploy@v3.12.12
