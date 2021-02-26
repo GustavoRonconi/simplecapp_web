@@ -6,6 +6,7 @@ from .views import (
     BrokerView,
     SyncCeiView,
     NotificationView,
+    HomeView,
 )
 from rest_framework_simplejwt import views as jwt_views
 
@@ -27,4 +28,5 @@ urlpatterns = [
     path("sync-cei/", SyncCeiView.as_view(), name="sync-cei"),
     path("celery-progress/", include("celery_progress.urls"), name="celery-progress"),
     path("notification/", NotificationView.as_view(), name="broker"),
+    path("", HomeView.as_view()),
 ]
