@@ -29,6 +29,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY")
+if os.environ.get("GITHUB_WORKFLOW"):
+    SECRET_KEY = "apenas_teste"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
