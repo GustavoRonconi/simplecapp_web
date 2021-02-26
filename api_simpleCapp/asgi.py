@@ -5,14 +5,16 @@ defined in the ASGI_APPLICATION setting.
 
 import os
 import django
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")
+django.setup()
+
 from django.core.asgi import get_asgi_application
 from channels.routing import ProtocolTypeRouter, URLRouter
 from .middleware import TokenAuthMiddlewareStack
 from .routings import websocket_urlpatterns
 
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "project.settings")
-django.setup()
+from channels.layers import get_channel_layer
 
 
 application = ProtocolTypeRouter(
@@ -23,4 +25,6 @@ application = ProtocolTypeRouter(
         "websocket": TokenAuthMiddlewareStack(URLRouter(websocket_urlpatterns)),
     }
 )
+
+channel_layer = get_channel_layer()
 
