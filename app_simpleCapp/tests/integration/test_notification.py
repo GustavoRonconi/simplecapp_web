@@ -27,19 +27,19 @@ async def test_send_receive_notification(factory):
     }
     user = await database_sync_to_async(User.objects.create)(**valid_user)
 
-    token = str(
-        jwt.encode(
-            {
-                "token_type": "access",
-                "exp": 4580584862,
-                "jti": "3f20a75d3ac543cfbe9c79bd247491fb",
-                "user_id": user.id,
-            },
-            SECRET_KEY,
-            algorithm="HS256",
-        ),
-        "utf-8",
+    token = jwt.encode(
+        {
+            "token_type": "access",
+            "exp": 4580584862,
+            "jti": "3f20a75d3ac543cfbe9c79bd247491fb",
+            "user_id": user.id,
+        },
+        SECRET_KEY,
+        algorithm="HS256",
     )
+
+    if isinstance(token, (bytes, bytearray)):
+        token = token.decode("utf-8")
 
     communicator = WebsocketCommunicator(application, f"/notification/?token={token}",)
     connected, _ = await communicator.connect()
