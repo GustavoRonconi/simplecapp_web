@@ -25,8 +25,8 @@ jobs:
           if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt --no-cache-dir ; fi
 
       - name: Define Variables
-        env:
-          SECRET_KEY: "apenas_test_dart" 
+        run: |
+        echo "export SECRET_KEY=apenas_teste" > ~/.bashrc
       
       - name: Test with pytest
         run: pytest --cov=./ --cov-report=xml
