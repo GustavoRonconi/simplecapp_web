@@ -23,7 +23,6 @@ jobs:
         python-version: [3.8]
     env:
       SECRET_KEY: "apenas_test_dart"
-      POSTGREES_PORT: 5432
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
@@ -43,9 +42,9 @@ jobs:
       - name: Run migrations
         run: python manage.py migrate
 
-      # Run tests
+      # Run Tests
       - name: Test with pytest
-        run: python manage.py test
+        run: pytest --cov=./ --cov-report=xml
 
       # Deploy Heroku
       - uses: akhileshns/heroku-deploy@v3.12.12
