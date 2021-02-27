@@ -61,7 +61,6 @@
 <!-- ABOUT THE PROJECT -->
 ## Sobre o Projeto
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 Só no ano passado um milhão de brasileiros passaram a investir na bolsa de valores, vários destes brasileiros têm dificuldade de entender a influência de seus investimentos sobre o IRPF, a intenção do aplicativo é auxiliar os usuários sobre como declarar a renda obtida nos investimentos, calcular tudo que é necessário para simplificar esta declaração e por fim gerar documentos e relatórios necessários para o processo.
 
