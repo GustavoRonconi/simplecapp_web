@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
                 ('phone_number', models.CharField(max_length=50, unique=True)),
                 ('cpf', models.CharField(max_length=50)),
                 ('cep', models.CharField(max_length=50)),
-                ('state', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='app_simpleCapp.statesmodel')),
+                ('state', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='api.statesmodel')),
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.PROTECT, related_name='profile', to=settings.AUTH_USER_MODEL)),
             ],
             options={

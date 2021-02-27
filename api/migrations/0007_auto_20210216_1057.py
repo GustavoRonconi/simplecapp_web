@@ -7,13 +7,13 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app_simpleCapp', '0006_auto_20210214_1933'),
+        ('api', '0006_auto_20210214_1933'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='brokeragefeesmodel',
             name='profile',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='app_simpleCapp.profilemodel'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.profilemodel'),
         ),
     ]

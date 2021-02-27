@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('app_simpleCapp', '0008_remove_profilemodel_age'),
+        ('api', '0008_remove_profilemodel_age'),
     ]
 
     operations = [

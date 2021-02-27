@@ -1,5 +1,5 @@
 from django.urls import path
-from app_simpleCapp.consumers import NotificationConsumer
+from api.consumers import NotificationConsumer
 from .middleware import TokenAuthMiddlewareStack
 
 websocket_urlpatterns = [

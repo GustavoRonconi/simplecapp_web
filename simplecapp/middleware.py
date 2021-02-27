@@ -2,7 +2,7 @@ from django.contrib.auth.models import AnonymousUser
 from channels.db import database_sync_to_async
 from django.contrib.auth import get_user_model
 import jwt
-from api_simpleCapp.settings import SECRET_KEY
+from simplecapp.settings import SECRET_KEY
 from channels.auth import AuthMiddlewareStack
 
 User = get_user_model()

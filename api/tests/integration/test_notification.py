@@ -5,12 +5,12 @@ import json
 from rest_framework.test import force_authenticate
 from ...views import NotificationView
 import jwt
-from api_simpleCapp.settings import SECRET_KEY
+from simplecapp.settings import SECRET_KEY
 from channels.testing import WebsocketCommunicator
 from channels.db import database_sync_to_async
 from django.contrib.auth.hashers import make_password
 
-from api_simpleCapp.asgi import application
+from simplecapp.asgi import application
 from asgiref.sync import sync_to_async
 
 

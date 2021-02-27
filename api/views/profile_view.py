@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from django.shortcuts import get_object_or_404
 from rest_framework.response import Response
-from app_simpleCapp.serializers.profile_serializer import ProfileSerializer
+from api.serializers.profile_serializer import ProfileSerializer
 from rest_framework import permissions
 from ..serializers import decorators
 from ..models import ProfileModel

@@ -1,4 +1,4 @@
-"""api_simpleCapp URL Configuration
+"""simplecapp URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -20,5 +20,6 @@ from django.conf.urls import include
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("auth/", include("rest_framework_social_oauth2.urls"),),
-    path("", include("app_simpleCapp.urls")),
+    path("api/", include("api.urls")),
+    path("", include("website.urls")),
 ]

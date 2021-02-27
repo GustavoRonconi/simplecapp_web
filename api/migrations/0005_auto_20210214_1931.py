@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app_simpleCapp', '0004_brokeragefeesmodel_brokermodel'),
+        ('api', '0004_brokeragefeesmodel_brokermodel'),
     ]
 
     operations = [

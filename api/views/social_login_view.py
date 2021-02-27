@@ -6,7 +6,7 @@ from social_django.utils import load_strategy, load_backend
 from social_core.backends.oauth import BaseOAuth2
 from social_core.exceptions import MissingBackend, AuthTokenError, AuthForbidden
 from rest_framework_simplejwt.tokens import RefreshToken
-from app_simpleCapp.serializers.social_login_serializer import SocialSerializer
+from api.serializers.social_login_serializer import SocialSerializer
 
 
 class SocialLoginView(generics.GenericAPIView):

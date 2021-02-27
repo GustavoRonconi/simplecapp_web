@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('app_simpleCapp', '0002_auto_20210129_1527'),
+        ('api', '0002_auto_20210129_1527'),
     ]
 
     operations = [
