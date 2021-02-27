@@ -137,8 +137,6 @@ Copyright (C) SimpleCapp, Inc - Todos os direitos reservados.
 
 Gustavo A. Ronconi - gustavoronconi95@gmail.com.com
 
-Project Link: [https://github.com/GustavoRonconi/simplecapp-web](https://github.com/GustavoRonconi/simplecapp-web)
-
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
