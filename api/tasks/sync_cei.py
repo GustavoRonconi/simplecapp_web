@@ -4,7 +4,7 @@ from celery_progress.backend import ProgressRecorder
 
 
 @shared_task(bind=True)
-def sync_cei(self, duration):
+def generate_report(self, duration):
     progress_recorder = ProgressRecorder(self)
     for i in range(5):
         sleep(duration)

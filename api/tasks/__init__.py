@@ -1,1 +1,1 @@
-from .sync_cei import sync_cei
+from .generate_report import generate_report
