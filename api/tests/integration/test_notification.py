@@ -41,12 +41,12 @@ async def test_send_receive_notification(factory):
     if isinstance(token, (bytes, bytearray)):
         token = token.decode("utf-8")
 
-    communicator = WebsocketCommunicator(application, f"/notification/?token={token}",)
+    communicator = WebsocketCommunicator(application, f"/api/notification/?token={token}",)
     connected, _ = await communicator.connect()
     assert connected
 
     request = await sync_to_async(factory.post)(
-        "/notification/",
+        "/api/notification/",
         json.dumps({"message": "Hello Word!"}),
         content_type="application/json",
     )
