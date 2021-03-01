@@ -26,5 +26,5 @@ urlpatterns = [
     path("broker/", BrokerView.as_view(), name="broker"),
     path("generate-report/", GenerateReportView.as_view(), name="generate-report"),
     path("celery-progress/", include("celery_progress.urls"), name="celery-progress"),
-    path("notification/", NotificationView.as_view(), name="broker"),
+    path("notification/", NotificationView.as_view(), name="notification"),
 ]
