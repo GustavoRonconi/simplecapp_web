@@ -4,3 +4,4 @@ from .brokerage_fees_view import BrokerageFeesView
 from .broker_view import BrokerView
 from .generate_report_view import GenerateReportView
 from .notification_view import NotificationView
+from .state_view import StateView

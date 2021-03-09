@@ -6,6 +6,7 @@ from .views import (
     BrokerView,
     GenerateReportView,
     NotificationView,
+    StateView,
 )
 from rest_framework_simplejwt import views as jwt_views
 
@@ -24,6 +25,7 @@ urlpatterns = [
     path("profile/<int:pk>/", ProfileView.as_view(), name="profile"),
     path("brokerage-fees/", BrokerageFeesView.as_view(), name="brokerage-fees"),
     path("broker/", BrokerView.as_view(), name="broker"),
+    path("state/", StateView.as_view(), name="state"),
     path("generate-report/", GenerateReportView.as_view(), name="generate-report"),
     path("celery-progress/", include("celery_progress.urls"), name="celery-progress"),
     path("notification/", NotificationView.as_view(), name="notification"),
