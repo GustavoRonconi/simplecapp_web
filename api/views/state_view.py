@@ -8,7 +8,6 @@ from ..serializers import StatesSerializer
 
 
 class StateView(APIView):
-    permission_classes = (IsAuthenticated,)
 
     def get(self, request):
         states = StatesModel.objects.all()
