@@ -214,7 +214,7 @@ SOCIAL_AUTH_PIPELINE = (
     "social_core.pipeline.user.user_details",
 )
 
-CELERY_BROKER_URL = "redis://:pe6dfe46568790370d972936a51e598c05e238e69e406a85f1cd29729c4906356@ec2-72-44-37-44.compute-1.amazonaws.com:31009/0"
+CELERY_BROKER_URL = "redis://:pe6dfe46568790370d972936a51e598c05e238e69e406a85f1cd29729c4906356@ec2-3-225-27-164.compute-1.amazonaws.com:31830/0"
 CELERY_RESULT_BACKEND = "django-db"
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_RESULT_SERIALIZER = "json"
@@ -226,7 +226,7 @@ CHANNEL_LAYERS = {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
             "hosts": [
-                "redis://:pe6dfe46568790370d972936a51e598c05e238e69e406a85f1cd29729c4906356@ec2-72-44-37-44.compute-1.amazonaws.com:31009/1"
+                "redis://:pe6dfe46568790370d972936a51e598c05e238e69e406a85f1cd29729c4906356@ec2-3-225-27-164.compute-1.amazonaws.com:31830/1"
             ],
         },
     },
