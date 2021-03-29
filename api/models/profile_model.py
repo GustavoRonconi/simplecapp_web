@@ -14,3 +14,6 @@ class ProfileModel(models.Model):
     cpf = models.CharField(null=False, max_length=50, unique=True)
     state = models.ForeignKey("StatesModel", null=False, on_delete=models.PROTECT)
     cep = models.CharField(null=False, max_length=50)
+    street = models.CharField(max_length=50, null=False)
+    district = models.CharField(max_length=50, null=False)
+

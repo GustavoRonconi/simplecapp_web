@@ -35,6 +35,8 @@ def test_post_valid_profile_with_social_login(
         "phone_number": "456465642424",
         "cpf": "0924807892424",
         "cep": "88880000",
+        "street": "Rua Dr. Valdir Cotrin",
+        "district": "Centro",
         "state": valid_user_with_profile.state.pk,
     }
 
@@ -56,6 +58,8 @@ def test_post_valid_profile_without_social_login(factory, valid_user_with_profil
         "phone_number": "4564656424",
         "cpf": "09248078924",
         "cep": "88880000",
+        "street": "Rua Dr. Valdir Cotrin",
+        "district": "Centro",
         "user": {
             "username": "gustavoronconi3",
             "password": make_password("gustavoronconi3"),
@@ -72,6 +76,7 @@ def test_post_valid_profile_without_social_login(factory, valid_user_with_profil
     response = view(request)
 
     assert response.status_code == status.HTTP_201_CREATED
+
 
 @pytest.mark.django_db
 def test_delete_profile(factory, valid_user_with_profile):
@@ -92,6 +97,8 @@ def test_post_invalid_profile_without_social_login(factory, valid_user_with_prof
         "phone_number": "45646564",
         "cpf": "09248078908",
         "cep": "88880000",
+        "street": "Rua Dr. Valdir Cotrin",
+        "district": "Centro",
     }
     request = factory.post(
         "/profile/", json.dumps(profile_to_post), content_type="application/json",

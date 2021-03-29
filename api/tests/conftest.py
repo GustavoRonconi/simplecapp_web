@@ -20,6 +20,8 @@ def valid_user_with_profile():
         "phone_number": "4564656477",
         "cpf": "0924807890877",
         "cep": "88880000",
+        "street": "Rua Dr. Valdir Cotrin",
+        "district": "Centro",
     }
     valid_user1 = {
         "username": "gustavoronconi",
