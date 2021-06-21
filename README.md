@@ -20,7 +20,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="static/images/logo.png" alt="Logo" width="300" height="300">
+    <img src="static/images/icone.png" alt="Logo" width="300" height="300">
   </a>
 
   <h3 align="center">SimpleCapp - Web</h3>
