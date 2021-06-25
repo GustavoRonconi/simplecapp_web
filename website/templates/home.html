@@ -1,23 +1,124 @@
 {% load static %}
 
-<html>
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
 
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
     <title>SimpleCapp</title>
+
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicons/favicon.ico'%}">
+
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link rel="stylesheet" crossorigin="anonymous"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==">
+    <link href="{% static 'assets/css/theme.css'%}" rel="stylesheet" />
+
+    <link href="{% static 'vendors/swiper/swiper-bundle.min.css'%}" rel="stylesheet">
 </head>
 
+
 <body>
-    <div style="background-color: #F7DE50; position: fixed;
-                    width: 100%;
-                    height: 100%;
-                    top: 0px;
-                    left: 0px;
-                    z-index: 1000;
-                    vertical-align:middle; text-align:center;"><img src="{% static 'images/simplecapp.png'%}" alt="">
-        <p style="color: #949597;font-family:Georgia, 'Times New Roman', Times, serif; font-size:xxx-large;">
-            SimpleCapp
-        </p>
-    </div>
-</body>F
+
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+        <nav class="navbar sticky-top">
+            <div class="container pt-2"><a class="navbar-brand" href="index.html"> <img
+                        src="{% static 'assets/img/gallery/logo3_resized.png'%}" alt="..." /></a>
+                <div class="navbar-nav ms-auto">
+                    <button class="btn btn-primary mt-3">Login</button>
+                </div>
+            </div>
+        </nav>
+
+
+        <!-- ============================================-->
+        <!-- <section> begin ============================-->
+        <section class="mt-6">
+
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-9 col-lg-8 col-xl-5">
+                        <h1 class="display-3 lh-sm">Simplificando investimentos</h1>
+                    </div>
+                    <div class="col-md-9 col-xl-5">
+                        <p class="fs-2">Para você contador ou pessoa física que não quer mais gastar horas e horas do
+                            seu dia declarando seu imposto de renda variável, você deu sorte de achar a ferramenta
+                            certa.</p>
+                        <button class="btn btn-primary mt-3">Iniciar agora</button>
+                    </div>
+                </div>
+            </div>
+            <!-- end of .container-->
+
+        </section>
+        <!-- <section> close ============================-->
+        <!-- ============================================-->
+
+        <!-- ============================================-->
+        <!-- <section> begin ============================-->
+        <section>
+
+            <div class="container">
+                <h1 class="display-6 fw-semi-bold">Produtos</h1>
+                <p class="fs-2">A SimpleCapp oferece soluções para automações de rotinas do mercado financeiro e
+                    contabilidade.</p>
+                <div class="row mb-4 mt-6">
+                    <div class="col-md-6">
+                        <div class="border rounded-1 border-700 h-100 features-items">
+                            <div class="p-5"><img src="{% static 'assets/img/gallery/dashboardicon.png'%}" alt="Dashboard"
+                                    style="width:48px;height:48px;" />
+                                <h3 class="pt-3 lh-base">IRFácil</h3>
+                                <p class="mb-0">Automatize toda a rotina relacionada a declaração do imposto de renda
+                                    variável, controle suas operações e a de seus clientes através de uma interface
+                                    simples.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end of .container-->
+
+    </main>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+
+
+
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <script src="{% static 'vendors/@popperjs/popper.min.js'%}"></script>
+    <script src="{% static 'vendors/bootstrap/bootstrap.min.js'%}"></script>
+    <script src="{% static 'vendors/is/is.min.js'%}"></script>
+    <script src="{% static 'vendors/swiper/swiper-bundle.min.js'%}"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+    <script src="{% static 'assets/js/theme.js'}"></script>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400&amp;display=swap"
+        rel="stylesheet">
+</body>
 
 </html>
