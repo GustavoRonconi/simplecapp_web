@@ -22,9 +22,7 @@ class BrokerageFeesView(APIView):
 
         if len(brokerage_fees) == 0:
             return Response(status=status.HTTP_204_NO_CONTENT, data=[],)
-        serializer = BrokerageFeesSerializer(
-            brokerage_fees, many=True, context={"request": request}
-        )
+        serializer = BrokerageFeesSerializer(brokerage_fees, many=True, context={"request": request})
 
         return Response(status=status.HTTP_200_OK, data=serializer.data)
 
@@ -35,10 +33,8 @@ class BrokerageFeesView(APIView):
         for v in data_without_profile:
             v["profile_id"] = profile.id
             data.append(v)
-        
-        serializer = BrokerageFeesSerializer(
-            data=data, many=True, context={"request": request}
-        )
+
+        serializer = BrokerageFeesSerializer(data=data, many=True, context={"request": request})
         if serializer.is_valid():
             BrokerageFeesModel.objects.filter(profile_id=profile.id).delete()
             serializer.save()

@@ -8,7 +8,6 @@ from ..serializers import StatesSerializer
 
 
 class StateView(APIView):
-
     def get(self, request):
         states = StatesModel.objects.all()
 

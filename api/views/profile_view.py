@@ -21,11 +21,7 @@ class OnlyOwners(permissions.BasePermission):
 
     @decorators.profile_analyser
     def has_permission(self, request, view, profile):
-        if (
-            request.method != "POST"
-            and view.kwargs.get("pk")
-            and profile.id != view.kwargs["pk"]
-        ):
+        if request.method != "POST" and view.kwargs.get("pk") and profile.id != view.kwargs["pk"]:
             return False
         return True
 
@@ -41,7 +37,7 @@ class ProfileView(APIView):
             serializer = ProfileSerializer(profile)
             return Response(status=status.HTTP_200_OK, data=serializer.data)
 
-        return Response(status=status.HTTP_204_NO_CONTENT)        
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
     @decorators.profile_analyser
     def post(self, request, profile):

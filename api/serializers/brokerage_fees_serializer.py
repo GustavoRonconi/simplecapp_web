@@ -24,16 +24,10 @@ class BrokerageFeesListSerializer(serializers.ListSerializer):
                 if index < len(brokerage_fees):
                     if (
                         brokerage_fee["end_date"] is None
-                        or (
-                            brokerage_fees[index]["begin_date"]
-                            - brokerage_fee["end_date"]
-                        ).days
-                        != 1
+                        or (brokerage_fees[index]["begin_date"] - brokerage_fee["end_date"]).days != 1
                     ):
                         raise serializers.ValidationError(
-                            {
-                                "brokerage_fees": "Existem inconsistências na lista de vigências"
-                            }
+                            {"brokerage_fees": "Existem inconsistências na lista de vigências"}
                         )
 
         return data

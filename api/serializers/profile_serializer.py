@@ -49,22 +49,17 @@ class ProfileSerializer(serializers.ModelSerializer):
             user = User.objects.create(**user_data)
             profile = ProfileModel.objects.create(**validated_data, user=user)
 
-
             return profile
         validated_data["user_id"] = self.context["request"].user.id
         validated_data["cpf"] = re.sub("[^0-9]", "", validated_data["cpf"])
-        validated_data["phone_number"] = re.sub(
-            "[^0-9]", "", validated_data["phone_number"]
-        )
+        validated_data["phone_number"] = re.sub("[^0-9]", "", validated_data["phone_number"])
         profile = ProfileModel.objects.create(**validated_data)
 
         return profile
 
     def update(self, instance, validated_data):
         if validated_data.get("phone_number"):
-            validated_data["phone_number"] = re.sub(
-                "[^0-9]", "", validated_data["phone_number"]
-            )
+            validated_data["phone_number"] = re.sub("[^0-9]", "", validated_data["phone_number"])
         for key, value in validated_data.items():
             if key == "user":
                 for k, v in value.items():
@@ -82,7 +77,5 @@ class ProfileSerializer(serializers.ModelSerializer):
         if self.context["request"].method == "PUT":
             for key in data.keys():
                 if key in keys_not_allowed:
-                    raise serializers.ValidationError(
-                        {key: "Não é permitido alterar o campo."}
-                    )
+                    raise serializers.ValidationError({key: "Não é permitido alterar o campo."})
         return data

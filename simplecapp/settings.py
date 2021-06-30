@@ -126,9 +126,7 @@ if os.environ.get("GITHUB_WORKFLOW"):
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
@@ -189,9 +187,7 @@ SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
 
 
 # Google configuration
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = (
-    "619939177191-dqvurkdms2dgmjj7v3j17ml5n18lns99.apps.googleusercontent.com"
-)
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = "619939177191-dqvurkdms2dgmjj7v3j17ml5n18lns99.apps.googleusercontent.com"
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = "UYHcPefRQAoCIz6FzYz7z7zk"
 
 # Define SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE to get extra permissions from Google.
@@ -224,14 +220,9 @@ CELERY_TASK_SERIALIZER = "json"
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [
-                "redis://localhost:6379/1"
-            ],
-        },
+        "CONFIG": {"hosts": ["redis://localhost:6379/1"],},
     },
 }
 
 # Ative Django-Heroku.
 django_heroku.settings(locals())
-

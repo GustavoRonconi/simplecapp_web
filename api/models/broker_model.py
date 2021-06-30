@@ -6,4 +6,3 @@ class BrokerModel(models.Model):
         db_table = "broker"
 
     broker_name = models.CharField(max_length=50)
-    

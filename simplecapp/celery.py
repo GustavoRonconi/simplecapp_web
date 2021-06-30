@@ -13,12 +13,7 @@ for app_name in settings.INSTALLED_APPS:
         continue
     for root, dirs, files in os.walk(app_name + "/tasks"):
         for file in files:
-            if (
-                file.startswith("__")
-                or file.endswith(".pyc")
-                or not file.endswith(".py")
-            ):
+            if file.startswith("__") or file.endswith(".pyc") or not file.endswith(".py"):
                 continue
             file = file[:-3]
             celery_app.autodiscover_tasks([app_name + ".tasks"], related_name=file)
-

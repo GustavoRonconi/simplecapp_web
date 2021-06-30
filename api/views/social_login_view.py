@@ -26,10 +26,7 @@ class SocialLoginView(generics.GenericAPIView):
             backend = load_backend(strategy=strategy, name=provider, redirect_uri=None)
 
         except MissingBackend:
-            return Response(
-                {"error": "Please provide a valid provider"},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
+            return Response({"error": "Please provide a valid provider"}, status=status.HTTP_400_BAD_REQUEST,)
         try:
             access_token = None
             if isinstance(backend, BaseOAuth2):
@@ -42,14 +39,12 @@ class SocialLoginView(generics.GenericAPIView):
             )
         except AuthTokenError as error:
             return Response(
-                {"error": "Invalid credentials", "details": str(error)},
-                status=status.HTTP_400_BAD_REQUEST,
+                {"error": "Invalid credentials", "details": str(error)}, status=status.HTTP_400_BAD_REQUEST,
             )
 
         except AuthForbidden as error:
             return Response(
-                {"error": "Invalid token", "details": str(error)},
-                status=status.HTTP_400_BAD_REQUEST,
+                {"error": "Invalid token", "details": str(error)}, status=status.HTTP_400_BAD_REQUEST,
             )
 
         try:
@@ -57,14 +52,12 @@ class SocialLoginView(generics.GenericAPIView):
 
         except HTTPError as error:
             return Response(
-                {"error": "Invalid token", "details": str(error)},
-                status=status.HTTP_400_BAD_REQUEST,
+                {"error": "Invalid token", "details": str(error)}, status=status.HTTP_400_BAD_REQUEST,
             )
 
         except AuthForbidden as error:
             return Response(
-                {"error": "Invalid token", "details": str(error)},
-                status=status.HTTP_400_BAD_REQUEST,
+                {"error": "Invalid token", "details": str(error)}, status=status.HTTP_400_BAD_REQUEST,
             )
 
         if authenticated_user and authenticated_user.is_active:

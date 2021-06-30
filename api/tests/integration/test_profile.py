@@ -24,9 +24,7 @@ def valid_user_without_profile():
 
 
 @pytest.mark.django_db
-def test_post_valid_profile_with_social_login(
-    valid_user_with_profile, valid_user_without_profile, factory
-):
+def test_post_valid_profile_with_social_login(valid_user_with_profile, valid_user_without_profile, factory):
     user = User.objects.get(username="gustavoronconi2")
     profile_to_post = {
         "gender": 1,
@@ -41,9 +39,7 @@ def test_post_valid_profile_with_social_login(
     }
 
     view = ProfileView.as_view()
-    request = factory.post(
-        "/profile/", json.dumps(profile_to_post), content_type="application/json",
-    )
+    request = factory.post("/profile/", json.dumps(profile_to_post), content_type="application/json",)
     force_authenticate(request, user=user)
     response = view(request)
     assert response.status_code == status.HTTP_201_CREATED
@@ -69,9 +65,7 @@ def test_post_valid_profile_without_social_login(factory, valid_user_with_profil
         },
         "state": valid_user_with_profile.state.pk,
     }
-    request = factory.post(
-        "/profile/", json.dumps(profile_to_post), content_type="application/json",
-    )
+    request = factory.post("/profile/", json.dumps(profile_to_post), content_type="application/json",)
     view = ProfileView.as_view()
     response = view(request)
 
@@ -100,9 +94,7 @@ def test_post_invalid_profile_without_social_login(factory, valid_user_with_prof
         "street": "Rua Dr. Valdir Cotrin",
         "district": "Centro",
     }
-    request = factory.post(
-        "/profile/", json.dumps(profile_to_post), content_type="application/json",
-    )
+    request = factory.post("/profile/", json.dumps(profile_to_post), content_type="application/json",)
     view = ProfileView.as_view()
     response = view(request)
 

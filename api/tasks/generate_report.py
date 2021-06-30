@@ -14,4 +14,3 @@ def generate_report(self, duration):
     send_notifications("Não é que esse negócio funciona?", all_user=True)
 
     return "Done"
-

@@ -15,56 +15,76 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='BrokerModel',
+            name="BrokerModel",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('broker_name', models.CharField(max_length=50)),
+                (
+                    "id",
+                    models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID"),
+                ),
+                ("broker_name", models.CharField(max_length=50)),
             ],
-            options={
-                'db_table': 'broker',
-            },
+            options={"db_table": "broker",},
         ),
         migrations.CreateModel(
-            name='StatesModel',
+            name="StatesModel",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=96)),
-                ('state_abbr', models.CharField(max_length=24)),
-                ('cod_uf', models.IntegerField()),
+                (
+                    "id",
+                    models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID"),
+                ),
+                ("name", models.CharField(max_length=96)),
+                ("state_abbr", models.CharField(max_length=24)),
+                ("cod_uf", models.IntegerField()),
             ],
-            options={
-                'db_table': 'states',
-            },
+            options={"db_table": "states",},
         ),
         migrations.CreateModel(
-            name='ProfileModel',
+            name="ProfileModel",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('gender', models.BooleanField()),
-                ('date_of_birth', models.DateField()),
-                ('occupation', models.CharField(max_length=50)),
-                ('phone_number', models.CharField(max_length=50, unique=True)),
-                ('cpf', models.CharField(max_length=50, unique=True)),
-                ('cep', models.CharField(max_length=50)),
-                ('state', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='api.statesmodel')),
-                ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='profile', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID"),
+                ),
+                ("gender", models.BooleanField()),
+                ("date_of_birth", models.DateField()),
+                ("occupation", models.CharField(max_length=50)),
+                ("phone_number", models.CharField(max_length=50, unique=True)),
+                ("cpf", models.CharField(max_length=50, unique=True)),
+                ("cep", models.CharField(max_length=50)),
+                (
+                    "state",
+                    models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to="api.statesmodel"),
+                ),
+                (
+                    "user",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="profile",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
-            options={
-                'db_table': 'profile_user',
-            },
+            options={"db_table": "profile_user",},
         ),
         migrations.CreateModel(
-            name='BrokerageFeesModel',
+            name="BrokerageFeesModel",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('begin_date', models.DateField()),
-                ('end_date', models.DateField(null=True)),
-                ('brokerage_fee_value', models.DecimalField(decimal_places=5, max_digits=10)),
-                ('broker', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.brokermodel')),
-                ('profile', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.profilemodel')),
+                (
+                    "id",
+                    models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID"),
+                ),
+                ("begin_date", models.DateField()),
+                ("end_date", models.DateField(null=True)),
+                ("brokerage_fee_value", models.DecimalField(decimal_places=5, max_digits=10)),
+                (
+                    "broker",
+                    models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to="api.brokermodel"),
+                ),
+                (
+                    "profile",
+                    models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to="api.profilemodel"),
+                ),
             ],
-            options={
-                'db_table': 'brokerage_fees',
-            },
+            options={"db_table": "brokerage_fees",},
         ),
     ]

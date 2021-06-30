@@ -12,8 +12,6 @@ class BrokerView(APIView):
 
     def get(self, request):
         brokers = BrokerModel.objects.all()
-        serializer = BrokerSerializer(
-            brokers, many=True, context={"request": request}
-        )
+        serializer = BrokerSerializer(brokers, many=True, context={"request": request})
 
         return Response(status=status.HTTP_200_OK, data=serializer.data)

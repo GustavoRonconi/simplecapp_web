@@ -31,15 +31,10 @@ def valid_brokerage_fees():
 
 
 @pytest.mark.django_db
-def test_get_brokerage_fees_by_profile(
-    valid_user_with_profile, factory, valid_brokerage_fees
-):
+def test_get_brokerage_fees_by_profile(valid_user_with_profile, factory, valid_brokerage_fees):
 
     brokerage_fees_by_profile = BrokerageFeesModel.objects.bulk_create(
-        [
-            BrokerageFeesModel(**q, profile=valid_user_with_profile)
-            for q in valid_brokerage_fees
-        ]
+        [BrokerageFeesModel(**q, profile=valid_user_with_profile) for q in valid_brokerage_fees]
     )
     serializer = BrokerageFeesSerializer(brokerage_fees_by_profile, many=True)
     user = User.objects.get(username="gustavoronconi")
@@ -51,36 +46,28 @@ def test_get_brokerage_fees_by_profile(
 
 
 @pytest.mark.django_db
-def test_post_valid_brokerage_fees(
-    valid_user_with_profile, factory, valid_brokerage_fees
-):
+def test_post_valid_brokerage_fees(valid_user_with_profile, factory, valid_brokerage_fees):
     user = User.objects.get(username="gustavoronconi")
     view = BrokerageFeesView.as_view()
     request = factory.post(
-        "/brokerage-fees/",
-        json.dumps(valid_brokerage_fees),
-        content_type="application/json",
+        "/brokerage-fees/", json.dumps(valid_brokerage_fees), content_type="application/json",
     )
 
     force_authenticate(request, user=user)
     response = view(request)
     assert response.status_code == status.HTTP_201_CREATED
 
+
 @pytest.mark.django_db
-def test_post_invalid_brokerage_fees(
-    valid_user_with_profile, factory, valid_brokerage_fees
-):
+def test_post_invalid_brokerage_fees(valid_user_with_profile, factory, valid_brokerage_fees):
     invalid_brokerage_fees = valid_brokerage_fees.copy()
     invalid_brokerage_fees[0]["begin_date"] = "2021-01-02"
     user = User.objects.get(username="gustavoronconi")
     view = BrokerageFeesView.as_view()
     request = factory.post(
-        "/brokerage-fees/",
-        json.dumps(invalid_brokerage_fees),
-        content_type="application/json",
+        "/brokerage-fees/", json.dumps(invalid_brokerage_fees), content_type="application/json",
     )
 
     force_authenticate(request, user=user)
     response = view(request)
     assert response.status_code == status.HTTP_400_BAD_REQUEST
-

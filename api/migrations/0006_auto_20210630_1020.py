@@ -8,24 +8,28 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('api', '0005_financialoperation_profile'),
+        ("api", "0005_financialoperation_profile"),
     ]
 
     operations = [
-        migrations.RenameModel(
-            old_name='FinancialOperation',
-            new_name='FinancialOperationModel',
-        ),
+        migrations.RenameModel(old_name="FinancialOperation", new_name="FinancialOperationModel",),
         migrations.CreateModel(
-            name='ProcessedIRPFModel',
+            name="ProcessedIRPFModel",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('reference_year', models.IntegerField()),
-                ('processing_datetime', models.DateTimeField(default=django.utils.timezone.now, editable=False)),
-                ('profile', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.profilemodel')),
+                (
+                    "id",
+                    models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID"),
+                ),
+                ("reference_year", models.IntegerField()),
+                (
+                    "processing_datetime",
+                    models.DateTimeField(default=django.utils.timezone.now, editable=False),
+                ),
+                (
+                    "profile",
+                    models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to="api.profilemodel"),
+                ),
             ],
-            options={
-                'db_table': 'processed_irpf',
-            },
+            options={"db_table": "processed_irpf",},
         ),
     ]

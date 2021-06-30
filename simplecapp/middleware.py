@@ -34,9 +34,7 @@ class TokenAuthMiddlewareInstance:
 
     async def __call__(self, receive, send):
         try:
-            query = dict(
-                (x.split("=") for x in self.scope["query_string"].decode().split("&"))
-            )
+            query = dict((x.split("=") for x in self.scope["query_string"].decode().split("&")))
             token_key = query.get("token")
             self.scope["user"] = await get_user(token_key)
         except:
