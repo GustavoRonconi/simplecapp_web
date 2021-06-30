@@ -7,7 +7,7 @@ class ProfileModel(models.Model):
         db_table = "profile_user"
 
     user = models.OneToOneField(
-        User, related_name="profile", on_delete=models.CASCADE)
+        User, related_name="profile", on_delete=models.CASCADE) #TODO AGORA OS PERFIS PODEM OU NÃO TER USUARIOS
     gender = models.BooleanField()
     date_of_birth = models.DateField()
     occupation = models.CharField(max_length=50, null=True)

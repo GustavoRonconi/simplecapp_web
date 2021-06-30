@@ -2,7 +2,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.db import models
 
 
-class FinancialOperation(models.Model):
+class FinancialOperationModel(models.Model):
     class OperationTypes(models.TextChoices):
         purchase = ("purchase", _("Compra"))
         sale = ("sale", _("Venda"))
@@ -30,5 +30,6 @@ class FinancialOperation(models.Model):
     unitary_value = models.DecimalField(max_digits=10, decimal_places=5)
     amount = models.DecimalField(max_digits=10, decimal_places=5)
     broker = models.ForeignKey(
-        "BrokerModel", null=False, on_delete=models.PROTECT)
+        "BrokerModel", on_delete=models.PROTECT)
+    profile = models.ForeignKey("ProfileModel", on_delete=models.CASCADE)
     currency_code = models.CharField(max_length=50)

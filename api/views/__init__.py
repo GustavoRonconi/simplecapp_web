@@ -5,3 +5,4 @@ from .broker_view import BrokerView
 from .generate_report_view import GenerateReportView
 from .notification_view import NotificationView
 from .state_view import StateView
+from .processed_irpf_view import ProcessedIRPFView

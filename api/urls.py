@@ -7,6 +7,7 @@ from .views import (
     GenerateReportView,
     NotificationView,
     StateView,
+    ProcessedIRPFView
 )
 from rest_framework_simplejwt import views as jwt_views
 
@@ -29,4 +30,5 @@ urlpatterns = [
     path("generate-report/", GenerateReportView.as_view(), name="generate-report"),
     path("celery-progress/", include("celery_progress.urls"), name="celery-progress"),
     path("notification/", NotificationView.as_view(), name="notification"),
+    path("process_irpf/", ProcessedIRPFView.as_view(), name="process-irpf"),
 ]
