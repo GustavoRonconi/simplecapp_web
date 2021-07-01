@@ -1,6 +1,6 @@
 from celery import shared_task
 from api.models.financial_operations_model import FinancialOperationModel
-from calcula 
+from simplecapp_calculation_engine import CalculationEngine, calculation_engine
 
 
 @shared_task(bind=True)
@@ -27,4 +27,7 @@ def calcule_irpf(self, reference_year, profile_id, processed_irpf_id):
             for op in financial_operations
         ],
     }
-    print(1)
+    calculation_engine_instance = CalculationEngine(message_to_engine)
+    output_irpf = calculation_engine_instance.process()
+
+    # TODO criar os modelos de saída p/ persistir no banco

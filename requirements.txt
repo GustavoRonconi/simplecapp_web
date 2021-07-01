@@ -11,4 +11,4 @@ channels-redis==3.2.0
 pytest-asyncio==0.14.0
 django-heroku==0.3.1
 whitenoise==5.2.0
-git+ssh://git@github.com/GustavoRonconi/simplecapp_calculation_engine.git@0.1.4
+git+ssh://git@github.com/GustavoRonconi/simplecapp_calculation_engine.git@0.1.5
